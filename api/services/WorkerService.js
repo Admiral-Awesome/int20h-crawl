@@ -1,17 +1,26 @@
 var token = "e35320780da19a9208bed8e427e852b825b1d668725e5997ce93f8de776484238e02ebedea9bb4019b6ed";
 var request = require('request');
 var signs = [];
-var minutes = 15;
+var minutes = 1500;
 var async = require('async');
 var cron = require('node-cron');
+var Twitter = require('twitter');
+var client = new Twitter({
+  consumer_key: '8mBaGQUK51w2ios4HgmuplvqJ',
+  consumer_secret: 'MLojlQYK7SbcrqDfnQea67MggoMiGiwHgK9o2pEb4NZpI9736e',
+  access_token_key: '712121743-i26KLjxHyFmCghnMbbVbHs94ln4hkuY30Dm2oBee',
+  access_token_secret: 'UgsGufZuZRBlJxFJsTsInsp6NAKl02wRo72JOeylb5kBZ'
+});
 
-
+client.get('search/tweets', {q: '#wdgniwg'}, function(error, tweets, response) {
+//    console.log(tweets.statuses[0].user);
+});
 module.exports = {
     startCrawl: function () {
         module.exports.startVk().then(function (data) {
             console.log(signs)
             // {posts : []}
-            request.post("http://138.68.101.145:80/posts/store", {posts : signs}, function(err, resp, body) {
+            request.post({url: "http://138.68.101.145:80/posts/store", form : {posts : signs}}, function(err, resp, body) {
                 console.log(err);
                 console.log(body)
             })
