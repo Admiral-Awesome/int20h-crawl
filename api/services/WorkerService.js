@@ -70,7 +70,7 @@ module.exports = {
 
 
                 var tmpSign = {};
-
+                tmpSign.user_id = body[i].owner_id;
                 tmpSign.time = body[i].date;
                 tmpSign.likes = body[i].likes.count;
                 if (body[i].user)
