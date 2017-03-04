@@ -11,6 +11,10 @@ module.exports = {
         module.exports.startVk().then(function (data) {
             console.log(signs)
             // {posts : []}
+            request.post("http://138.68.101.145:80/posts/store", {posts : signs}, function(err, resp, body) {
+                console.log(err);
+                console.log(body)
+            })
         });
     },
     startVk: function () {
